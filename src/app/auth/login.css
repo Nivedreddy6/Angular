@@ -1,0 +1,43 @@
+/* FULL PAGE CENTERING */
+.login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+}
+
+/* LOGIN CARD */
+.login-card {
+  width: 380px;
+  padding: 32px;
+  border-radius: 22px;
+  text-align: center;
+}
+
+/* GLASSMORPHISM */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+}
+
+/* GLOW */
+.glow:hover {
+  box-shadow:
+    0 0 25px rgba(63,81,181,0.35),
+    0 30px 60px rgba(63,81,181,0.25);
+}
+
+/* FORM */
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 12px;
+  height: 44px;
+  border-radius: 20px;
+}

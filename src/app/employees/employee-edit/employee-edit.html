@@ -1,0 +1,55 @@
+<div class="page">
+  <mat-card class="glass form-card">
+    <h2>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+    <p class="subtitle">
+      {{ isEditMode ? 'Update employee information' : 'Create a new employee' }}
+    </p>
+
+    <form [formGroup]="form" class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department">
+          <mat-option *ngFor="let d of departments" [value]="d">
+            {{ d }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="active">
+          <mat-option [value]="true">Active</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+    <div class="actions">
+      <button mat-raised-button color="primary"
+              (click)="save()" [disabled]="isSaving">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+
+      <button mat-stroked-button (click)="cancel()" [disabled]="isSaving">
+        Cancel
+      </button>
+
+      <button *ngIf="isEditMode"
+              mat-raised-button color="warn"
+              (click)="delete()" [disabled]="isSaving">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
+  </mat-card>
+</div>

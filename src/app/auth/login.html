@@ -1,0 +1,30 @@
+<div class="login-wrapper">
+  <mat-card class="login-card glass glow">
+    <h2>Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-btn"
+        type="submit"
+        [disabled]="form.invalid">
+        Login
+      </button>
+
+    </form>
+  </mat-card>
+</div>

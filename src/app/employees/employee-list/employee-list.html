@@ -1,0 +1,70 @@
+<div class="employee-page">
+
+  <div class="page-header">
+    <button mat-stroked-button (click)="goToDashboard()">← Dashboard</button>
+
+    <button
+      *ngIf="isAdmin"
+      mat-raised-button
+      color="primary"
+      (click)="addEmployee()">
+      <mat-icon>person_add</mat-icon>
+      Add Employee
+    </button>
+    <button mat-raised-button color="warn" (click)="logout()">
+        Logout
+      </button> 
+    </div>
+  
+
+  <table mat-table [dataSource]="employees">
+
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let e">{{ e.id }}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let e">
+        <div class="emp">
+          <img [src]="'https://ui-avatars.com/api/?name=' + e.name">
+          {{ e.name }}
+        </div>
+      </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef>Department</th>
+      <td mat-cell *matCellDef="let e">{{ e.department }}</td>
+    </ng-container>
+
+  
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let e">
+        <span class="badge" [class.active]="e.active" [class.inactive]="!e.active">
+          {{ e.active ? 'Active' : 'Inactive' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container *ngIf="isAdmin" matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let e">
+        <button mat-button color="primary" (click)="editEmployee(e)">Edit</button>
+        <button mat-button color="warn"(click)="deleteEmployee(e)" [disabled]="!e.active">
+        {{ e.active ? 'Delete' : 'Delete' }}
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+
+</div>
